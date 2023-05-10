@@ -1,7 +1,20 @@
 import React from 'react';
 import Post from '../post/post';
+import { getPosts } from '../../api/postApi';
 
 const Recipe = () => {
+    const [posts, setPosts] = React.useState([]);
+
+    React.useEffect(() => {
+        const posts = async () => {
+            const response = await getPosts();
+            return response.posts;
+        }
+
+        setPosts(posts);
+    }, []);
+
+
   return (
     <>
       <h1>Recipe</h1>
